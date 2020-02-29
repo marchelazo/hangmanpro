@@ -8,7 +8,7 @@ int main (){
   int salir = 4 ;
   int choice;
 
-printf("1. empezar juego\n");
+printf("1. Empezar juego\n");
 printf("2. Instrucciones\n");
 printf("3. About\n");
 printf("4. Salir\n");
@@ -34,6 +34,6 @@ scanf ("%d", &choice);
    break;
   }
 
-  }
+  
   return 0;
 }
