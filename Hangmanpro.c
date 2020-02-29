@@ -24,10 +24,17 @@ scanf ("%d", &choice);
     printf ("....\n\n");
   }
   else if (choice == salir){
+ master
     printf ("Adios\n\n");
    break;
   }
   
+
+    printf ("Gracias Por Jugar\n\n");
+   break;
+  }
+  
+ master
   }
   return 0;
 }
