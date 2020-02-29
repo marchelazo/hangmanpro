@@ -1,1 +1,75 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+int main (){
+  while (1){
+  int empezar_juego = 1;
+  int ver_intrucciones = 2;
+  int about = 3;
+  int salir = 4 ;
+  int choice;
+  int nombre;
+
+printf("1. Empezar juego\n");
+printf("2. Instrucciones\n");
+printf("3. About\n");
+printf("4. Salir\n");
+scanf ("%d", &choice);
+  if (choice == empezar_juego){
+    printf ("Porfavor ingrese su nombre\n");
+      scanf("%S", &nombre);
+      printf("%S\n", &nombre);
+
+
+      srand (time(NULL));
+
+      char palabrasAdivinar[][160] = { 
+        "puntero"
+        "arreglo"
+        "computadora"
+        "git"
+        "marco"
+        "codigo"
+        "codigo"
+        "binario"
+        "victor"
+      };
+
+      int randomizadorPalabras = rand() %10;
+
+      int numVidas = 10;
+      int numCorrectos = 0;
+      int numViejosCorrectos = 0;
+      int largoPalabra = strlen(palabrasAdivinar[randomizadorPalabras]);
+      int letraAdivinada[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
+      int salida = 0;
+      int loopIndex = 0;
+      char adivinar[16];
+
+      while ( numCorrectos < largoPalabra){
+        printf("Ingrese una letra para adivinar");
+        fgets(adivinar, 16, stdin);
+
+        
+      }
+      
+     
+     printf ("Gracias Por Jugar\n\n");
+     break;
+  }
+
+  else if (choice == ver_intrucciones){
+    printf ("Vamos a jugar HANGMAN, el juego en donde la computadora escogera una palabra random y usted como jugador debera adivinar la palabra. Tendra 10 intentos para poder adivinar la palabra, de lo contrario perdera el juego. Empieze adivinando letras para llenar las casillas de la palabra que tiene que adivinar\n\n");
+  }
+  else if (choice == about){
+    printf ("....\n\n");
+  }
+  else if (choice == salir){
+ 
+    printf ("Adios\n\n");
+   break;
+  }
+  }
+  return 0;
+}
