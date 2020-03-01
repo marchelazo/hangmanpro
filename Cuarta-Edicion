@@ -1,1 +1,141 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
 
+void red (){
+  printf("\033[0;31m");
+}
+void yellow (){
+  printf("\033[0;33m");
+}
+void green (){
+  printf ("\033[0;32m");
+}
+void blue (){
+  printf ("\033[0;34m");
+}
+void magenta (){
+  printf ("\033[0;35m");
+}
+void cyan (){
+  printf ("\033[0;36m");
+}
+void reset (){
+  printf ("\033[0m");
+}
+
+
+
+int main (){
+  while (1){
+  int empezar_juego = 1;
+  int ver_intrucciones = 2;
+  int about = 3;
+  int salir = 4 ;
+  int choice;
+  int nombre;
+
+red();
+printf("1. Empezar juego\n");
+cyan ();
+printf("2. Instrucciones\n");
+yellow ();
+printf("3. About\n");
+magenta ();
+printf("4. Salir\n");
+reset();
+
+
+scanf ("%d", &choice);
+  if (choice == empezar_juego){
+    yellow ();
+    printf ("Porfavor ingrese su nombre\n");
+      scanf("%S", &nombre);
+      printf("%S\n", &nombre);
+
+
+      srand (time(NULL));
+
+      char palabrasAdivinar[][61] = { 
+        "puntero",
+        "arreglo",
+        "computadora",
+        "git",
+        "digito",
+        "codigo",
+        "binario",
+        "victoria",
+      };
+
+      int randomizadorPalabras = rand() %9;
+
+      int numVidas = 10;
+      int numCorrectos = 0;
+      int numViejosCorrectos = 0;
+      int largoPalabra = strlen(palabrasAdivinar[randomizadorPalabras]);
+      int letraAdivinada[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
+      int salida = 0;
+      int loopIndex = 0;
+      char adivinar[16];
+      char caracterAdivinado;
+
+    printf("palabrasAdivinar:%s randomizadorPalabras:%d largoPalabra:%d\n", palabrasAdivinar[randomizadorPalabras],randomizadorPalabras, largoPalabra);
+
+
+    //Loop del Juego
+      while ( numCorrectos < largoPalabra){
+        yellow ();
+        printf("Numeros Correctos hasta el momento: %d", numCorrectos);
+        cyan ();
+        printf("\nIngrese una letra para adivinar\n");
+        fgets(adivinar, 16, stdin);
+
+        if (strncmp(adivinar, "salir", 5) == 0){
+          salir = 1;
+          break; 
+        }
+
+        caracterAdivinado = adivinar[0];
+
+        printf("Caracter Adivinado:%c\n", caracterAdivinado);
+
+
+        for ( loopIndex = 0; loopIndex < largoPalabra; loopIndex++){
+
+          if (letraAdivinada[loopIndex] == 1){
+            continue;
+          }
+
+          if ( caracterAdivinado == palabrasAdivinar[randomizadorPalabras][loopIndex]){
+            letraAdivinada[loopIndex] = 1;
+            numCorrectos++;
+
+          }
+        }
+
+      }
+      
+      if (salir == 1){
+        
+        printf("El Usuario se ha salido\n");
+      }
+     
+     printf ("Gracias Por Jugar\n\n");
+     break;
+  }
+
+  else if (choice == ver_intrucciones){
+    printf ("Vamos a jugar HANGMAN, el juego en donde la computadora escogera una palabra random y usted como jugador debera adivinar la palabra. Tendra 10 intentos para poder adivinar la palabra, de lo contrario perdera el juego. Empieze adivinando letras para llenar las casillas de la palabra que tiene que adivinar\n\n");
+  }
+  else if (choice == about){
+    printf ("....\n\n");
+  }
+  else if (choice == salir){
+ 
+    printf ("Adios\n\n");
+   break;
+  }
+  }
+  return 1;
+}
