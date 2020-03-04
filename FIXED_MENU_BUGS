@@ -1,0 +1,270 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+void red (){
+  printf("\033[0;31m");
+}
+void yellow (){
+  printf("\033[0;33m");
+}
+void green (){
+  printf ("\033[0;32m");
+}
+void blue (){
+  printf ("\033[0;34m");
+}
+void magenta (){
+  printf ("\033[0;35m");
+}
+void cyan (){
+  printf ("\033[0;36m");
+}
+void boldgreen (){
+  printf("\033[1;32m");
+}
+void boldred (){
+  printf("\033[1;31m");
+}
+void reset (){
+  printf ("\033[0m");
+}
+void delay (){
+  
+}
+
+int main (){
+  while (1){
+  int empezar_juego = 1;
+  int ver_intrucciones = 2;
+  int about = 3;
+  int salir = 4 ;
+  int choice;
+  int nombre;
+
+
+
+printf("\n");
+printf("\n");
+
+
+  boldgreen();
+printf("       ****      *****      **************     *************     **************\n");
+printf("       ****      *****      **************     *************     **************\n");
+printf("       ***************      ***        ***     ****     ****     ***\n");
+printf("       ***************      **************     ****     ****     ***\n");
+printf("       ****      *****      **************     ****     ****     ***     ******\n");
+printf("       ****      *****      ***        ***     ****     ****     ***       ****\n");
+printf("       ****      *****      ***        ***     ****     ****     **************\n");
+printf("       ****      *****      ***        ***     ****      ***     **************\n");
+
+printf("\n");
+printf("\n");
+
+yellow();
+printf("                              ############################\n");
+printf("                              #                          #\n");
+
+red();
+printf("                              #  1. EMPEZAR EL JUEGO     #\n");
+yellow();
+printf("                              #                          #\n");
+
+cyan ();
+printf("                              #  2. INSTRUCCIONES        #\n");
+yellow();
+printf("                              #                          #\n");
+
+yellow ();
+printf("     ******************       #  3. ACERCA DE            #     *****************\n");
+yellow();
+printf("                              #                          #\n");
+
+magenta ();
+printf("                              #  4. SALIR                #\n");
+yellow();
+printf("                              #                          #\n");
+
+yellow();
+printf("                              #                          #\n");
+yellow();
+printf("                              ############################\n");
+
+printf("\n");
+printf("\n");
+
+boldgreen();
+printf("                ****      *****      **************     *************     \n");
+printf("                ******   ******      **************     *************     \n");
+printf("                ******* *******      ***        ***     ****     ****     \n");
+printf("                ***************      **************     ****     ****     \n");
+printf("                *****     *****      **************     ****     ****     \n");
+printf("                *****     *****      ***        ***     ****     ****     \n");
+printf("                *****     *****      ***        ***     ****     ****     \n");
+printf("                *****     *****      ***        ***     ****      ***     \n");
+
+printf("\n");
+
+printf("by : Juan Luis Fernandez & Marcelo Garcia\n");
+
+
+
+
+
+scanf ("%d", &choice);
+  if (choice == empezar_juego){
+    yellow ();
+    printf ("--------------------------    PORFAVOR INGRESE SU NOMBRE!     --------------------------  \n");
+      ("%S", &nombre);
+      printf("\n");
+      printf("\n");
+      printf("--------------------------         BIENVENIDO %S!!          ---------------------------\n", &nombre);
+      printf("\n");
+      printf("\n");
+
+
+      srand (time(NULL));
+
+      char palabrasAdivinar[][61] = { 
+        "puntero",
+        "arreglo",
+        "computadora",
+        "git",
+        "digito",
+        "codigo",
+        "binario",
+        "victoria",
+      };
+
+      int randomizadorPalabras = rand() %9;
+
+      int numVidas = 10;
+      int numCorrectos = 0;
+      int numViejosCorrectos = 0;
+      int largoPalabra = strlen(palabrasAdivinar[randomizadorPalabras]);
+      int letraAdivinada[12] = { 0,0,0,0,0,0,0,0,0,0,0,0 };
+      int salida = 0;
+      int loopIndex = 0;
+      char adivinar[16];
+      char caracterAdivinado;
+
+    //printf("palabrasAdivinar:%s randomizadorPalabras:%d largoPalabra:%d\n", palabrasAdivinar[randomizadorPalabras],randomizadorPalabras, largoPalabra);
+
+
+    //Loop del Juego
+      while ( numCorrectos < largoPalabra){
+
+          printf("NUEVO TURNO...  \nLA PALABRA DE EL HANGMAN:");
+
+        for ( loopIndex = 0; loopIndex < largoPalabra; loopIndex++){
+
+          if (letraAdivinada[loopIndex] == 1){
+            printf("%c",palabrasAdivinar[randomizadorPalabras][loopIndex]);
+
+          }
+
+          else {
+            printf("-");  
+          }
+        }
+
+        printf("\n");
+
+        yellow ();
+        printf("CARACTERES CORRECTOS HASTA EL MOMENTO: %d", numCorrectos);
+        cyan ();
+        printf("\nIngrese una letra para adivinar\n");
+        fgets(adivinar, 16, stdin);
+
+        if (strncmp(adivinar, "salir", 5) == 0){
+          salir = 1;
+          break; 
+        }
+
+        caracterAdivinado = adivinar[0];
+
+        printf("CARACTER ADIVINADO :%c\n", caracterAdivinado);
+
+        numViejosCorrectos = numCorrectos;
+
+
+        for ( loopIndex = 0; loopIndex < largoPalabra; loopIndex++){
+
+          if (letraAdivinada[loopIndex] == 1){
+            continue;
+          }
+
+          if ( caracterAdivinado == palabrasAdivinar[randomizadorPalabras][loopIndex]){
+            letraAdivinada[loopIndex] = 1;
+            numCorrectos++;
+
+          }
+        }
+
+        if(numViejosCorrectos == numCorrectos){
+          numVidas--;
+          printf("UPS... INTENTA DE NUEVO\n"); 
+          if(numVidas==0){
+            break;
+          }
+
+        }
+
+        else {
+
+          printf("MUY BIEN, ADIVINASTE!!\n");
+        }
+
+      }
+
+      if (salir == 1){
+
+        printf("EL USUARIO SE HA SALIDO\n");
+      }
+     else if (numVidas == 0 ){
+       printf("\n");
+       printf("\n");
+       printf("\n");
+      boldred();
+       printf("HAS PERDIDO (⌣́_⌣̀) LA PALABRA ERA  %s \n",
+       palabrasAdivinar[randomizadorPalabras] );
+     }
+     else {
+       printf("\n");
+       printf("\n");
+       boldgreen ();
+       printf("HAS GANADO!!, LA PALABRA ES: %s \n", palabrasAdivinar[randomizadorPalabras]);
+     }
+    yellow ();
+     printf ("Gracias POR JUGAR %S!! \n", &nombre);
+     break;
+  }
+
+  else if (choice == ver_intrucciones){
+    printf ("Vamos a jugar HANGMAN, el juego en donde la computadora escogera una palabra random y usted como jugador debera adivinar la palabra. Tendra 10 intentos para poder adivinar la palabra, de lo contrario perdera el juego. Empieze adivinando letras para llenar las casillas de la palabra que tiene que adivinar\n\n");
+       int c, d;
+   
+   for (c = 1; c <= 32767; c++)
+       for (d = 1; d <= 32767; d++)
+       {}
+  }
+   else if (choice == about){
+    printf ("Este programa fue diseñado por Juan Luis Fernandez y Marcelo Garcia \n\n");
+    printf ("Los puedes contactar como\n");
+    printf ("Marcelo Garcia\nmarcelogarcia@ufm.edu\n");
+    printf ("Juan Luis Fernandez\njuanfernandez@ufm.edu");
+          int c, d;
+   
+   for (c = 1; c <= 32767; c++)
+       for (d = 1; d <= 32767; d++)
+       {}
+  }
+  else if (choice == salir){
+
+    printf ("Adios\n\n");
+   break;
+  }
+  }
+  return 1;
+}
