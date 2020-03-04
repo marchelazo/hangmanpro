@@ -240,8 +240,11 @@ scanf ("%d", &choice);
   else if (choice == ver_intrucciones){
     printf ("Vamos a jugar HANGMAN, el juego en donde la computadora escogera una palabra random y usted como jugador debera adivinar la palabra. Tendra 10 intentos para poder adivinar la palabra, de lo contrario perdera el juego. Empieze adivinando letras para llenar las casillas de la palabra que tiene que adivinar\n\n");
   }
-  else if (choice == about){
-    printf ("....\n\n");
+ else if (choice == about){
+    printf ("Este programa fue diseñado por Juan Luis Fernandez y Marcelo Garcia \n\n");
+    printf ("Los puedes contactar como\n");
+    printf ("Marcelo Garcia\nmarcelogarcia@ufm.edu\n");
+    printf ("Juan Luis Fernandez\njuanfernandez@ufm.edu");
   }
   else if (choice == salir){
 
