@@ -3,6 +3,8 @@
 #include <string.h>
 #include <time.h>
 
+//test for git
+
 void red (){
   printf("\033[0;31m");
 }
